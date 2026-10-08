@@ -1,0 +1,2 @@
+<?php
+function db(): PDO { static $pdo=null;if($pdo)return $pdo;$host=getenv('DB_HOST');$name=getenv('DB_NAME');if(!$host||!$name)throw new RuntimeException('Database credentials are not configured.');$pdo=new PDO("mysql:host={$host};dbname={$name};charset=utf8mb4",getenv('DB_USER')?:'',getenv('DB_PASSWORD')?:'', [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES=>false]);return $pdo; }
